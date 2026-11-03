@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IGCSE Planner: Week 1</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Figtree:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#f4f5f8;--card:#fff;--ink:#16213a;--mute:#5d667a;--line:#dfe2ea;--accent:#16213a;
+--am:#2f5bd8;--ph:#7a3fd1;--li:#c27a0a;--im:#0b8a80;--ec:#2a8a3c;--bu:#c8403a;--cs:#46556e;--hi:#d9631c;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1420;--card:#1a2133;--ink:#eaeef7;--mute:#9aa4ba;--line:#2b3550;--accent:#eaeef7}}
+:root[data-theme="dark"]{--bg:#0f1420;--card:#1a2133;--ink:#eaeef7;--mute:#9aa4ba;--line:#2b3550;--accent:#eaeef7}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px);color-scheme:light dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.45 Figtree,system-ui,-apple-system,Segoe UI,sans-serif}
+.wrap{max-width:1240px;margin:0 auto;padding:20px 16px 40px}
+header{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between;margin-bottom:18px}
+h1{font:700 30px/1.1 "Bricolage Grotesque",Figtree,system-ui,sans-serif;margin:0 0 4px}
+.sub{color:var(--mute);margin:0}
+.stats{display:flex;gap:10px;flex-wrap:wrap}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;min-width:130px}
+.stat b{display:block;font:700 22px/1.1 "Bricolage Grotesque",Figtree,sans-serif}
+.stat span{color:var(--mute);font-size:13px}
+.bar{height:6px;background:var(--line);border-radius:3px;margin-top:6px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ec);width:0;transition:width .25s}
+.layout{display:grid;grid-template-columns:1fr 290px;gap:16px;align-items:start}
+.week{display:grid;grid-template-columns:repeat(7,minmax(150px,1fr));gap:8px;overflow-x:auto;padding-bottom:6px}
+.day{background:var(--card);border:1px solid var(--line);border-radius:10px;min-height:260px;display:flex;flex-direction:column}
+.day.today{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.dh{padding:10px 10px 8px;border-bottom:1px solid var(--line)}
+.dh b{font:700 16px/1 "Bricolage Grotesque",Figtree,sans-serif}
+.dh small{display:block;color:var(--mute);font-size:12.5px;margin-top:2px}
+.tasks{padding:6px;display:flex;flex-direction:column;gap:6px}
+.t{display:flex;gap:8px;align-items:flex-start;border-left:4px solid var(--c);background:color-mix(in srgb,var(--c) 8%,var(--card));border-radius:0 6px 6px 0;padding:7px 8px;cursor:pointer;font-size:13.5px}
+.t input{margin:3px 0 0;accent-color:var(--c);flex:none;width:16px;height:16px}
+.t em{display:block;font-style:normal;font-weight:600;font-size:12px;color:var(--c)}
+.t.done span.x{text-decoration:line-through;opacity:.55}
+.side section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:12px}
+h2{font:700 16px/1.2 "Bricolage Grotesque",Figtree,sans-serif;margin:0 0 8px}
+.side ul{margin:0;padding:0;list-style:none}
+.side li{padding:6px 0;border-top:1px solid var(--line);font-size:14px}
+.side li:first-child{border-top:0}
+.side small{color:var(--mute)}
+.key{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:14px;font-size:12.5px;color:var(--mute)}
+.key i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;background:var(--c)}
+.note{font-size:12.5px;color:var(--mute);margin-top:10px}
+button{font:inherit;background:none;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:6px 10px;cursor:pointer}
+button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (max-width:900px){.layout{grid-template-columns:1fr}.week{grid-template-columns:1fr}.day{min-height:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+ <div><h1>IGCSE Planner: Week 1</h1><p class="sub">Wed 4 Nov to Tue 10 Nov 2026 · tick a task only when it is finished</p></div>
+ <div class="stats">
+  <div class="stat"><b id="cd">–</b><span>days to Add Maths board (24 Feb)</span></div>
+  <div class="stat"><b id="pc">0/0</b><span>tasks done this week</span><div class="bar"><i id="pb"></i></div></div>
+ </div>
+</header>
+<div class="layout">
+ <div>
+  <div class="week" id="week"></div>
+  <div class="key" id="key"></div>
+  <p class="note">Ticks are saved in this browser only. The coach updates your score tracker and error logs in Obsidian after each marked paper. Paper numbers follow Cambridge’s usual naming; tell the coach if one does not exist.</p>
+ </div>
+ <aside class="side">
+  <section><h2>Open errors</h2><ul>
+   <li>AM-01 Integration <small>Open, 0 of 3 right</small></li>
+   <li>AM-02 Kinematics <small>Open, 0 of 3 right</small></li>
+   <li><small>Other subjects: errors appear after the first marked paper</small></li></ul>
+   <p class="note">An error closes after 3 right answers in a row, on different days, at least 7 days apart.</p></section>
+  <section><h2>Key dates</h2><ul>
+   <li>Pre-boards <small>first week of December, exact dates not given yet</small></li>
+   <li>Add Maths board <small>24 Feb and 2 Mar 2027</small></li>
+   <li>Literature and Hindi boards <small>Feb/Mar 2027</small></li>
+   <li>Pre-boards 2 <small>April 2027, tentative</small></li>
+   <li>Int Maths, Business, Physics, Economics, CS <small>May/Jun 2027</small></li></ul></section>
+  <section><h2>This week’s focus</h2><ul>
+   <li>Add Maths Paper 1: 3 papers, no calculator</li>
+   <li>Physics: first Paper 4, 2 and 6 attempts</li>
+   <li>Int Maths Papers 4 and 6</li>
+   <li>Business Paper 2: 8 and 12 mark answers</li></ul></section>
+  <button id="reset" type="button">Clear all ticks</button>
+ </aside>
+</div>
+</div>
+<script>
+const S={am:["Add Maths","--am"],ph:["Physics","--ph"],li:["Literature","--li"],im:["Int Maths","--im"],ec:["Economics","--ec"],bu:["Business","--bu"],cs:["Comp Sci","--cs"],hi:["Hindi","--hi"],rv:["Review","--cs"]};
+const D=[
+["Wed","4 Nov",[["am","0606/12, Feb/Mar 2025, Paper 1 (2 h, no calculator)"],["ph","0625/42, Feb/Mar 2025, Paper 4 (1 h 15 min)"],["li","Notes: Blake, “The Chimney-Sweeper” (language, structure, methods, context)"]]],
+["Thu","5 Nov",[["am","Redo every lost question from Wednesday’s paper (Integration, Kinematics)"],["im","0607/42, Feb/Mar 2025, Paper 4 (1 h 30 min, calculator)"],["ec","Memorise mark schemes: Unemployment (4.6), Paper 2 questions"],["hi","0549/01, Feb/Mar 2023, Paper 1, Exercise 5 (Q21): note on saving water. Write 120 to 160 words"]]],
+["Fri","6 Nov",[["ph","0625/22, Feb/Mar 2025, Paper 2 (45 min), then fix errors"],["bu","0450/22, May/Jun 2024, Paper 2 case study; focus on 8 and 12 mark answers"],["li","Notes: Things Fall Apart, chapters 1 to 3"]]],
+["Sat","7 Nov",[["am","0606/11, May/Jun 2025, Paper 1 (2 h, no calculator)"],["cs","0478/22, May/Jun 2025, Paper 2 (1 h 45 min)"],["im","0607/62, Feb/Mar 2025, Paper 6 (1 h 30 min)"],["hi","0549/01, Feb/Mar 2023, Paper 1, Exercise 6 (Q22): school magazine article on education. Write 160 words, not 200"]]],
+["Sun","8 Nov",[["ph","0625/62, Feb/Mar 2025, Paper 6 (1 h), first attempt"],["li","Notes: Antony and Cleopatra, Act 1, Scenes 1 to 2"],["ec","Memorise mark schemes: Inflation (4.7), Paper 2 questions"],["rv","Weekly review: score tracker and all error logs"]]],
+["Mon","9 Nov",[["ph","Redo every lost question from Papers 4, 2 and 6"],["im","Redo every lost question from Papers 4 and 6"],["bu","Redo your weakest 8 or 12 mark answer from Friday"],["hi","Reading: school workbook comprehensions"]]],
+["Tue","10 Nov",[["am","0606/13, May/Jun 2025, Paper 1 (2 h, no calculator)"],["li","Notes: Heaney, “Follower”"],["ec","Paper 1 MCQs, Unit 4 (Government and the macroeconomy)"],["cs","Redo every lost question from Saturday"]]]
+];
+const K="igcse-w1";let st={};
+try{st=JSON.parse(localStorage.getItem(K)||"{}")}catch(e){st={}}
+function save(){try{localStorage.setItem(K,JSON.stringify(st))}catch(e){}}
+const wk=document.getElementById("week");let total=0;
+D.forEach((d,i)=>{
+ const el=document.createElement("div");el.className="day"+(i===0?" today":"");
+ el.innerHTML='<div class="dh"><b>'+d[0]+'</b><small>'+d[1]+'</small></div><div class="tasks"></div>';
+ const box=el.querySelector(".tasks");
+ d[2].forEach((t,j)=>{
+  const id=i+"-"+j;total++;
+  const lab=document.createElement("label");lab.className="t"+(st[id]?" done":"");lab.style.setProperty("--c","var("+S[t[0]][1]+")");
+  lab.innerHTML='<input type="checkbox"'+(st[id]?" checked":"")+'><div><em>'+S[t[0]][0]+'</em><span class="x">'+t[1]+'</span></div>';
+  lab.querySelector("input").addEventListener("change",e=>{st[id]=e.target.checked;if(!st[id])delete st[id];lab.classList.toggle("done",e.target.checked);save();upd()});
+  box.appendChild(lab)});
+ wk.appendChild(el)});
+function upd(){const n=Object.keys(st).length;document.getElementById("pc").textContent=n+"/"+total;document.getElementById("pb").style.width=(total?n/total*100:0)+"%"}
+upd();
+document.getElementById("reset").addEventListener("click",()=>{st={};save();document.querySelectorAll(".t").forEach(l=>{l.classList.remove("done");l.querySelector("input").checked=false});upd()});
+const kz=document.getElementById("key");
+["am","ph","li","im","ec","bu","cs","hi"].forEach(k=>{const s=document.createElement("span");s.innerHTML='<i style="--c:var('+S[k][1]+')"></i>'+S[k][0];kz.appendChild(s)});
+const days=Math.ceil((new Date(2027,1,24)-new Date())/864e5);document.getElementById("cd").textContent=days>0?days:0;
+</script>
+</body>
+</html>
